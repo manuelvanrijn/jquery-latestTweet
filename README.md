@@ -8,15 +8,15 @@ Of course there're a lot of plugins but I just want a simple clean plugin that j
 
 ### Import the javascript
 
-```javascript
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-	<script src="src/jquery.latestTweet.js"></script>
+```html
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+<script src="src/jquery.latestTweet.js"></script>
 ```
 
 ### Engage the plugin
 
-```
-    $('#element_for_tweet').latestTweet({
-	    username: 'manuelvanrijn'
-	});
+```javascript
+$('#element_for_tweet').latestTweet({
+	username: 'manuelvanrijn'
+});
 ```
