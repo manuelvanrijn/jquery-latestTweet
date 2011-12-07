@@ -4,52 +4,67 @@
 *  Author: Manuel van Rijn
 *  Licensed under the MIT license
 */
-
 ;(function($, window, document, undefined) {
-  var pluginName = 'latestTweet';
-  var defaults = {
-    username: 'manuelvanrijn'
+  
+  var LatestTweet = function(elem, options){
+    this.elem = elem;
+    this.$elem = $(elem);
+    this.config = $.extend({}, $.fn.latestTweet.defaults, options);
   };
 
-  function Plugin(element, options) {
-    this.element = element;
-    this.options = $.extend({}, defaults, options);
+  LatestTweet.prototype = {
+    init: function(username) {
+      // I prefer not using the name "that"
+      var _instance = this;
+      var url = _instance.getUrl(username);
 
-    this._defaults = defaults;
-    this._name = pluginName;
-
-    this.init();
-  }
-
-  Plugin.prototype = {
-    init: function() {
-      var url = this.build_url();
-      var that = this;
       $.getJSON(url, function(data) {
-        var formattedText = that.formatTweet(data[0].text);
-        $(that.element).html(formattedText);
+        var text = _instance.formatTweet(data[0].text);
+        _instance.$elem.html(text);
+
+        // trigger the callback
+        _instance.config.callback.call(this);
       });
+
+      return this;
     },
-    build_url: function() {
+    getUrl: function(username) {
       var proto = ('https:' == document.location.protocol ? 'https:' : 'http:');
-      return proto+'//api.twitter.com/1/statuses/user_timeline.json?screen_name='+this.options.username+'&count=1&callback=?';
+      return proto+'//api.twitter.com/1/statuses/user_timeline.json?screen_name='+username+'&count=1&callback=?';
     },
     formatTweet: function(text) {
       var regexpLinkUrl = /((ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?)/gi;
       var regexpLinkUser = /[\@]+([A-Za-z0-9-_]+)/gi;
-      var regexpLinkHash = / [\#]+([A-Za-z0-9-_]+)/gi;
+      var regexpLinkHash = /[\#]+([A-Za-z0-9-_]+)/gi;
 
-      text = text.replace(regexpLinkUrl, "<a href=\"$1\">$1</a>");
-      text = text.replace(regexpLinkUser, "<a href=\"http://twitter.com/$1\">@$1</a>");
-      return text.replace(regexpLinkHash, ' <a href="http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>');
+      if(this.config.formatLinks)
+        text = text.replace(regexpLinkUrl, "<a href=\"$1\">$1</a>");
+      if(this.config.formatMentions)
+        text = text.replace(regexpLinkUser, "<a href=\"http://twitter.com/$1\">@$1</a>");
+      if(this.config.formatHashes)
+        text = text.replace(regexpLinkHash, ' <a href="http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>');
+      return text;
     }
-  };
+  }
 
-  $.fn[pluginName] = function(options) {
+  $.fn.latestTweet = function(username, options) {
+    // if no username is specified, we can't proceed
+    if(typeof username != 'string')
+      return;
+
     return this.each(function () {
-      if (!$.data(this, 'plugin_' + pluginName)) {
-        $.data(this, 'plugin_' + pluginName, new Plugin(this, options));
+      // prevention against multiple instantiations
+      if (!$.data(this, 'plugin_latestTweet')) {
+        $.data(this, 'plugin_latestTweet', new LatestTweet(this, options).init(username));
       }
     });
-  }
+  };
+
+  $.fn.latestTweet.defaults = {
+    formatLinks: true,          // format url's to a clickable link
+    formatMentions: true,       // format @username to a link to the users profile
+    formatHashes: true,         // format #tag to a link to the twitter tag search
+    callback: function() {}     // function that will be called after the latest tweet has been filled in.
+  };
+
 })(jQuery, window, document);
