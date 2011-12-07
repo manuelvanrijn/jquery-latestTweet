@@ -40,11 +40,11 @@
       var regexpLinkHash = /[\#]+([A-Za-z0-9-_]+)/gi;
 
       if( this.config.formatLinks )
-        text = text.replace( regexpLinkUrl, "<a href=\"$1\">$1</a>" );
+        text = text.replace( regexpLinkUrl, '<a href="$1">$1</a>' );
       if( this.config.formatMentions )
-        text = text.replace( regexpLinkUser, "<a href=\"http://twitter.com/$1\">@$1</a>" );
+        text = text.replace( regexpLinkUser, '<a href="http://twitter.com/$1">@$1</a>' );
       if( this.config.formatHashes )
-        text = text.replace( regexpLinkHash, ' <a href="http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>' );
+        text = text.replace( regexpLinkHash, '<a href="http://search.twitter.com/search?q=&tag=$1&lang=all">#$1</a>' );
       return text;
     }
   }
