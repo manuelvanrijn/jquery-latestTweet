@@ -1,9 +1,11 @@
-/*
-*  Project: jQuery LatestTweet
-*  Description: return the latest tweet from a user
-*  Author: Manuel van Rijn
-*  Licensed under the MIT license
-*/
+/* =========================================================
+ * jquery.latestTweet.js v0.1
+ * Description: Return the latest tweet from a user
+ * Project: https://github.com/manuelvanrijn/jquery-latestTweet
+ * Author: Manuel van Rijn
+ * Released under the MIT License.
+ * ========================================================== */
+
 ;(function($, window, document, undefined) {
   
   var LatestTweet = function(elem, options){
