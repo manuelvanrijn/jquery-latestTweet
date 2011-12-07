@@ -55,10 +55,7 @@
       return;
 
     return this.each(function () {
-      // prevention against multiple instantiations
-      if (!$.data(this, 'plugin_latestTweet')) {
-        $.data(this, 'plugin_latestTweet', new LatestTweet(this, options).init(username));
-      }
+      new LatestTweet(this, options).init(username);
     });
   };
 

@@ -2,7 +2,7 @@
 
 ## Why oh why?
 
-Of course there're a lot of plugins but I just want a simple clean plugin that just returns me the formated latest tweet. Also I've started this project to learn what the best approach will be to create a jQuery plugin.
+Of course there're a lot of plugins but I just want a simple clean plugin that just returns me the formated latest tweet of a user.
 
 ## Example
 
@@ -16,7 +16,36 @@ Of course there're a lot of plugins but I just want a simple clean plugin that j
 ### Engage the plugin
 
 ```javascript
-$('#element_for_tweet').latestTweet({
-	username: 'manuelvanrijn'
+$('#element_for_tweet').latestTweet('manuelvanrijn');
+```
+
+### Plugin defaults
+
+The plugin has some default options you can override when executing the plugin:
+
+```javascript
+$('#element_for_tweet').latestTweet('manuelvanrijn', {
+	formatLink: false,
+	formatHashes: false
 });
+```
+
+You can also override the global default values if you want a different default behaviour.
+For instance, you can override the global default value for `formatLink` by defining:
+
+```javascript
+$.fn.latestTweet.defaults.formatLink = false;
+```
+
+## Default options
+
+Here's a list with the available default options
+
+```javascript
+{
+    formatLinks: true,          // format url's to a clickable link
+    formatMentions: true,       // format @username to a link to the users profile
+    formatHashes: true,         // format #tag to a link to the twitter tag search
+    callback: function() {}     // function that will be called after the latest tweet has been filled in.
+}
 ```
