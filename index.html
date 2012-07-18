@@ -1,81 +1,141 @@
+
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>jQuery.latestTweet Example Page</title>
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" />
-  <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" />
-  <style>
-    #download a:hover { text-decoration: none; }
-  </style>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8">
+    <title>Bootstrap, from Twitter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-<div class="topbar" data-scrollspy="scrollspy">
-  <div class="topbar-inner">
-    <div class="container">
-      <a class="brand" href="#">jQuery.latestTweet</a>
+    <!-- Le styles -->
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/style.css" />
+    <link rel="stylesheet" href="assets/google-code-prettify/prettify.css" />
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-responsive.min.css" />
 
-    </div>
-  </div>
-</div>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
-<div class="container">
-  <section id="intro" style="padding-top: 60px;">
-    <div class="page-header"><h1>jQuery.latestTweet</h1></div>
-      <div class="row">
-        <div class="span16">
-          <p>On this page you'll find a few examples that demonstrate the <a href="https://github.com/manuelvanrijn/jquery-latestTweet">jQuery.latestTweet</a> plugin</p>
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body data-spy="scroll" data-target=".navbar" data-offset="50" id="home">
+
+    <a href="https://github.com/manuelvanrijn/jquery-latestTweet"><img class="github-ribbon" src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub"></a>
+
+    <div class="navbar navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="#">jQuery.latestTweet</a>
+          <div class="nav-collapse">
+
+            <ul class="nav">
+              <li class="active"><a href="#home">Intro</a></li>
+              <li><a href="#defaults">Options</a></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Examples <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#example1">Default</a></li>
+                  <li><a href="#example2">Skip formatting</a></li>
+                  <li><a href="#example3">Callback</a></li>
+                </ul>
+              </li>
+            </ul>
+
+          </div><!--/.nav-collapse -->
         </div>
       </div>
-      <div class="row">
-        <div class="span16">
-          <h2>Plugin defaults</h2>
-<pre class="prettyprint">
+    </div>
+
+    <div class="container">
+
+      <!-- INTRO
+      ================================================== -->
+      <header id="intro" class="jumbotron subhead">
+        <h1>jQuery.latestTweet</h1>
+        <p class="lead">
+          On this page you'll find a few examples that demonstrate the <a href="https://github.com/manuelvanrijn/jquery-latestTweet">jQuery.latestTweet</a> plugin
+        </p>
+      </header>
+
+      <!-- DEFAULTS
+      ================================================== -->
+      <section id="defaults">
+        <div class="row">
+          <div class="span12">
+            <h2>Plugin defaults</h2>
+
+<pre class="prettyprint linenums">
 $.fn.latestTweet.defaults = {
-  formatLinks: true,          // format url&#39;s to a clickable link
+  formatLinks: true,          // format url's to a clickable link
   formatMentions: true,       // format @username to a link to the users profile
   formatHashes: true,         // format #tag to a link to the twitter tag search
   callback: function() {}     // function that will be called after the latest tweet has been filled in.
 };
 </pre>
+
+          </div>
         </div>
-      </div>
-  </section>
+      </section>
 
-  <section id="example1-section">
-    <div class="page-header"><h2>Example 1: <small>Get latest tweet for @bbcnews</small></h2></div>
-    <div class="row">
-      <div class="span8" id="example1">
-        <h3>Tweet</h3>
-        <blockquote><p></p></blockquote>
-      </div>
-      <div class="span8">
-        <h3>Code</h3>
+      <!-- EXAMPLE 1
+      ================================================== -->
+      <section id="example1">
+        <div class="page-header">
+          <h2>Example 1:
+            <small>Get latest tweet for @bbcnews</small>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="span6" id="demo1">
+            <h3>Tweet</h3>
+            <blockquote><p></p></blockquote>
+          </div>
+          <div class="span6">
+            <h3>Code</h3>
 
-<pre class="prettyprint">
+<pre class="prettyprint linenums">
 $(function() {
-  $(&#39;#example1 p&#39;).latestTweet(&#39;bbcnews&#39;);
+  $('#demo1 p').latestTweet('bbcnews');
 });
 </pre>
 
-      </div>
-    </div>
-  </section>
+          </div>
+        </div>
+      </section>
 
-  <section id="example2-section">
-    <div class="page-header"><h2>Example 2: <small>Get latest tweet without formatted hashes, url's and mentions</small></h2></div>
-    <div class="row">
-      <div class="span8" id="example2">
-        <h3>Tweet</h3>
-        <blockquote><p></p></blockquote>
-      </div>
-      <div class="span8">
-        <h3>Code</h3>
+      <!-- EXAMPLE 2
+      ================================================== -->
+      <section id="example2">
+        <div class="page-header">
+          <h2>Example 2:
+            <small>Get latest tweet without formatted hashes, url's and mentions</small>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="span6" id="demo2">
+            <h3>Tweet</h3>
+            <blockquote><p></p></blockquote>
+          </div>
+          <div class="span6">
+            <h3>Code</h3>
 
-<pre class="prettyprint">
+<pre class="prettyprint linenums">
 $(function() {
-  $(&#39;#example2 p&#39;).latestTweet(&#39;bbcnews&#39;, {
+  $('#demo2 p').latestTweet('bbcnews', {
     formatLinks: false,
     formatMentions: false,
     formatHashes: false
@@ -83,122 +143,104 @@ $(function() {
 });
 </pre>
 
-      </div>
-    </div>
-  </section>
-
-  <section id="example3-section">
-    <div class="page-header"><h2>Example 3: <small>Get latest tweet with callback on finish</small></h2></div>
-    <div class="row">
-      <div class="span16">
-        <div class="alert-message warning" id="log">
-          <p>press the button to start</p>
+          </div>
         </div>
-        <button class="btn" id="example3start">get tweet</button>
-      </div>
-    </div>
-    <div class="row">
-      <div class="span8" id="example3">
-        <h3>Tweet</h3>
-        <blockquote><p></p></blockquote>
-      </div>
-      <div class="span8">
-        <h3>Code</h3>
+      </section>
 
-<pre class="prettyprint">
+      <!-- EXAMPLE 3
+      ================================================== -->
+      <section id="example3">
+        <div class="page-header">
+          <h2>Example 3:
+            <small>Get latest tweet with callback on finish</small>
+          </h2>
+        </div>
+        <div class="row">
+          <div class="span6" id="demo3">
+            <div class="alert" id="log">
+              press the button to start
+            </div>
+            <button class="btn pull-right" id="demo3start">get tweet</button>
+
+            <h3>Tweet</h3>
+            <blockquote ><p></p></blockquote>
+          </div>
+          <div class="span6">
+            <h3>Code</h3>
+
+<pre class="prettyprint linenums">
 $(function() {
-  $(&#39;#example3start&#39;).click(function(e) {
-    e.preventDefault();
-    $(&quot;#log&quot;).text(&#39;start getting latest tweet&#39;);
-    $(&#39;#example3 p&#39;).latestTweet(&#39;foxnews&#39;, {
-      callback: function() {
-        $(&quot;#log&quot;).text(&#39;finished!&#39;);
-      }
-    });
-  });
-});
-</pre>
-
-      </div>
-    </div>
-  </section>
-
-  <section id="github">
-    <div class="page-header"><h2>Github</h2></div>
-    <div class="row">
-      <div class="span16">
-        <p>You can fork this project from github: <a href="https://github.com/manuelvanrijn/jquery-latestTweet">https://github.com/manuelvanrijn/jquery-latestTweet</a>.</p>
-        <p>Or to clone:<br />
-<pre class="prettyprint">
-$ git clone git://github.com/manuelvanrijn/jquery-latestTweet
-</pre>
-      </div>
-    </div>
-  </section>
-
-  <section id="download">
-    <div class="page-header"><h2>Download</h2></div>
-    <div class="row">
-      <div class="span16">
-        <a href="https://github.com/manuelvanrijn/jquery-latestTweet/zipball/master">
-          <img border="0" width="90" src="https://github.com/images/modules/download/zip.png" />
-        </a>
-        <a href="https://github.com/manuelvanrijn/jquery-latestTweet/tarball/master">
-          <img border="0" width="90" src="https://github.com/images/modules/download/tar.png" />
-        </a>
-      </div>
-    </div>
-  </section>
-
-</div>
-
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a></p>
-    <p></p>
-  </div>
-</footer>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-<script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
-<script src="http://twitter.github.com/bootstrap/1.4.0/bootstrap-scrollspy.js"></script>
-<script>$(function () { prettyPrint() })</script>
-<script src="https://raw.github.com/manuelvanrijn/jquery-latestTweet/master/src/jquery.latestTweet.min.js"></script>
-<script>
-$(function() {
-
-  $('#example1 p').latestTweet('bbcnews');
-
-  $('#example2 p').latestTweet('bbcnews', {
-    formatLinks: false,
-    formatMentions: false,
-    formatHashes: false
-  });
-
-  $('#example3start').click(function(e) {
+  $('#demo3start').click(function(e) {
     e.preventDefault();
     $("#log").text('start getting latest tweet');
-    $('#example3 p').latestTweet('foxnews', {
+    $('#demo3 p').latestTweet('foxnews', {
       callback: function() {
         $("#log").text('finished!');
       }
     });
   });
-
 });
-</script>
-<script type="text/javascript">
+</pre>
 
-  var _gaq = _gaq || [];
-  _gaq.push(['_setAccount', 'UA-17149124-1']);
-  _gaq.push(['_trackPageview']);
+          </div>
+        </div>
+        <div class="row">
 
-  (function() {
-    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-  })();
+        </div>
+      </section>
 
-</script>
-</body>
+      <!-- FOOTER
+      ================================================== -->
+      <footer class="footer">
+        <p class="pull-right"><a href="#home">Back to top</a></p>
+        <p>by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a></p>
+      </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+    <script src="assets/google-code-prettify/prettify.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.js"></script>
+    <script>$(function () { prettyPrint() })</script>
+    <script src="https://raw.github.com/manuelvanrijn/jquery-latestTweet/master/src/jquery.latestTweet.min.js"></script>
+    <script>
+    $(function() {
+
+      $('#demo1 p').latestTweet('bbcnews');
+
+      $('#demo2 p').latestTweet('bbcnews', {
+        formatLinks: false,
+        formatMentions: false,
+        formatHashes: false
+      });
+
+      $('#demo3start').click(function(e) {
+        e.preventDefault();
+        $("#log").text('start getting latest tweet');
+        $('#demo3 p').latestTweet('foxnews', {
+          callback: function() {
+            $("#log").text('finished!');
+          }
+        });
+      });
+
+    });
+    </script>
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-17149124-1']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+
+    </script>
+  </body>
 </html>
