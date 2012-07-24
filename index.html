@@ -18,13 +18,6 @@
     <!--[if lt IE 9]>
       <script src="http://html5sim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
-    <!-- Le fav and touch icons
-    <link rel="shortcut icon" href="../assets/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png" -->
   </head>
 
   <body data-spy="scroll" data-target=".navbar" data-offset="50" id="home">
@@ -58,9 +51,6 @@
       </div>
     </div>
 
-    <style>
-
-    </style>
     <!-- INTRO
     ================================================== -->
     <header>
@@ -82,7 +72,7 @@
       <section id="defaults">
         <div class="row">
           <div class="span12 panel">
-            <h4 class="header">Plugin defaults</h2>
+            <h4 class="header">Plugin defaults</h4>
 <pre class="prettyprint linenums content">
 $.fn.latestTweet.defaults = {
   formatLinks: true,          // format url's to a clickable link
@@ -192,8 +182,9 @@ $(function() {
       ================================================== -->
       <footer class="footer">
         <p class="pull-right"><a href="#home">Back to top</a></p>
-        <p><a href="https://github.com/manuelvanrijn/jquery-latestTweet">jquery-latestTweet</a> is built and maintained by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a>.
-          Follow me on <a href="http://twitter.com/manuelvanrijn/">Twitter</a>, <a href="https://github.com/manuelvanrijn/">GitHub</a> and <a rel="me" href="https://plus.google.com/u/0/117895812778172164201?rel=author">Google+</a>.</p></p>
+        <p>
+          <a href="https://github.com/manuelvanrijn/jquery-latestTweet">jquery-latestTweet</a> is built and maintained by <a href="http://manuel.manuelles.nl/">Manuel van Rijn</a>.
+          Follow me on <a href="http://twitter.com/manuelvanrijn/">Twitter</a>, <a href="https://github.com/manuelvanrijn/">GitHub</a> and <a rel="me" href="https://plus.google.com/u/0/117895812778172164201?rel=author">Google+</a>.</p>
       </footer>
 
     </div> <!-- /container -->
@@ -206,29 +197,8 @@ $(function() {
     <script src="assets/bootstrap/js/bootstrap.js"></script>
     <script>$(function () { prettyPrint() })</script>
     <script src="https://raw.github.com/manuelvanrijn/jquery-latestTweet/master/src/jquery.latestTweet.min.js"></script>
-    <script>
-    $(function() {
+    <script src="assets/examples.js"></script>
 
-      $('#demo1 p').latestTweet('bbcnews');
-
-      $('#demo2 p').latestTweet('bbcnews', {
-        formatLinks: false,
-        formatMentions: false,
-        formatHashes: false
-      });
-
-      $('#demo3start').click(function(e) {
-        e.preventDefault();
-        $("#log").text('start getting latest tweet');
-        $('#demo3 p').latestTweet('foxnews', {
-          callback: function() {
-            $("#log").text('finished!');
-          }
-        });
-      });
-
-    });
-    </script>
     <script type="text/javascript">
 
       var _gaq = _gaq || [];
