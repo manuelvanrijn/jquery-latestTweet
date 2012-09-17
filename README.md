@@ -49,3 +49,5 @@ Here's a list with the available default options
     callback: function() {}     // function that will be called after the latest tweet has been filled in.
 }
 ```
+
+[![githalytics.com alpha](https://cruel-carlota.pagodabox.com/fc117b93ff9a8abb7375c79e4a242efa "githalytics.com")](http://githalytics.com/manuelvanrijn/jquery-latestTweet)
